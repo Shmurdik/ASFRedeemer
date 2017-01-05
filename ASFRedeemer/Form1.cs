@@ -54,18 +54,19 @@ namespace ASFRedeemer
             if(checkBox_botname.Checked) { input += " " + comboBox_botname.Text; }
             Regex steamkey_Regex = new Regex("([A-Z0-9]{5}-[A-Z0-9]{5}-[A-Z0-9]{5})");
             MatchCollection steamkey_Matches = steamkey_Regex.Matches(richTextBox_keys.Text);
-            if(steamkey_Matches.Count == 0) { MessageBox.Show("No keys..."); return; }
-            List<string> keys = new List<string>();
-            for (int i = 0; i < steamkey_Matches.Count; i++)
+            if (steamkey_Matches.Count > 0)
             {
-                keys.Add(steamkey_Matches[i].Groups[1].Value);
-            }
-            input += " " + string.Join(",", keys.ToArray());
+                List<string> keys = new List<string>();
+                for (int i = 0; i < steamkey_Matches.Count; i++)
+                {
+                    keys.Add(steamkey_Matches[i].Groups[1].Value);
+                }
+                input += " " + string.Join(",", keys.ToArray());
 
-            if (Client == null)
-            {
-                Client = new Client(
-                    new NetTcpBinding
+                if (Client == null)
+                {
+                    Client = new Client(
+                        new NetTcpBinding
                     //new BasicHttpBinding
                     {
                         // We use SecurityMode.None for Mono compatibility
@@ -73,17 +74,19 @@ namespace ASFRedeemer
                         Security = { Mode = SecurityMode.None },
                         //Security = { Mode = BasicHttpSecurityMode.None },
                         SendTimeout = new TimeSpan(1, 0, 0)
-                    },
-                    new EndpointAddress("net.tcp://" + WCFHost + ":" + WCFPort + "/ASF")
+                        },
+                        new EndpointAddress("net.tcp://" + WCFHost + ":" + WCFPort + "/ASF")
                     //new EndpointAddress("http://" + WCFHost + ":" + WCFPort + "/ASF")
-                );
+                    );
+                }
+
+                richTextBox_result.Text = Client.HandleCommand(input);
+
+                label_redeem_OK.Text = "OK: " + Regex.Matches(richTextBox_result.Text, "Status: OK").Count;
+                label_redeem_AlreadyOwned.Text = "AlreadyOwned: " + Regex.Matches(richTextBox_result.Text, "Status: AlreadyOwned").Count;
+                label_redeem_DuplicatedKey.Text = "DuplicatedKey: " + Regex.Matches(richTextBox_result.Text, "Status: DuplicatedKey").Count;
             }
-
-            richTextBox_result.Text = Client.HandleCommand(input);
-
-            label_redeem_OK.Text = "OK: " + Regex.Matches(richTextBox_result.Text, "Status: OK").Count;
-            label_redeem_AlreadyOwned.Text = "AlreadyOwned: " + Regex.Matches(richTextBox_result.Text, "Status: AlreadyOwned").Count;
-            label_redeem_DuplicatedKey.Text = "DuplicatedKey: " + Regex.Matches(richTextBox_result.Text, "Status: DuplicatedKey").Count;
+            else { MessageBox.Show("No keys..."); }
 
             button_redeem.Enabled = true;
         }
