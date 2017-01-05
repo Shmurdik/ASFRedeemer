@@ -13,6 +13,8 @@ This crumb helps to fast redeem a tons of keys.
 
 ### How to use
 
+**ASF should be run as server!** I.e. like "ASF.exe --server".
+
 Copy ASFRedeemer.exe to ASF directory, put a простыню of keys (one key, list of keys or just text that contains one or more keys) in the "Keys" field and click "Redeem".
 
 If you launch ASFRedeemer outside the ASF directory, WCF data will be set by default i.e. host=localhost and port=1242.
