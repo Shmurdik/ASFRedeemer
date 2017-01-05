@@ -1,6 +1,6 @@
 # ASFRedeemer
 
-[![GitHub Release](https://img.shields.io/github/release/Shmurdik/ASFRedeemer.svg?label=Latest&maxAge=3600&colorB=008000)](https://github.com/Shmurdik/ASFRedeemer/releases/latest)
+[![GitHub Release](https://img.shields.io/github/release/Shmurdik/ASFRedeemer.svg?label=Latest&maxAge=6&colorB=008000)](https://github.com/Shmurdik/ASFRedeemer/releases/latest)
 [![Github Downloads](https://img.shields.io/github/downloads/Shmurdik/ASFRedeemer/latest/total.svg?label=Downloads&maxAge=60&colorB=008000)](https://github.com/Shmurdik/ASFRedeemer/releases/latest)
 
 [![Paypal.me Donate](https://img.shields.io/badge/Paypal.me-donate-blue.svg)](https://www.paypal.me/Shmurdik/1usd)
