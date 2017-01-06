@@ -82,9 +82,10 @@ namespace ASFRedeemer
 
                 richTextBox_result.Text = Client.HandleCommand(input);
 
-                label_redeem_OK.Text = "OK: " + Regex.Matches(richTextBox_result.Text, "Status: OK").Count;
-                label_redeem_AlreadyOwned.Text = "AlreadyOwned: " + Regex.Matches(richTextBox_result.Text, "Status: AlreadyOwned").Count;
-                label_redeem_DuplicatedKey.Text = "DuplicatedKey: " + Regex.Matches(richTextBox_result.Text, "Status: DuplicatedKey").Count;
+                listView_result.FindItemWithText("Total").SubItems[1].Text = Regex.Matches(richTextBox_result.Text, "Status: ").Count.ToString();
+                listView_result.FindItemWithText("OK").SubItems[1].Text = Regex.Matches(richTextBox_result.Text, "Status: OK").Count.ToString();
+                listView_result.FindItemWithText("AlreadyOwned").SubItems[1].Text = Regex.Matches(richTextBox_result.Text, "Status: AlreadyOwned").Count.ToString();
+                listView_result.FindItemWithText("DuplicatedKey").SubItems[1].Text = Regex.Matches(richTextBox_result.Text, "Status: DuplicatedKey").Count.ToString();
             }
             else { MessageBox.Show("No keys..."); }
 
