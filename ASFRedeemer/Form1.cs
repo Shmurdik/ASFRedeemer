@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
@@ -44,14 +45,14 @@ namespace ASFRedeemer
             InitializeComponent();
         }
 
-        private void button_redeem_Click(object sender, EventArgs e)
+        private void ResponseRedeem()
         {
             richTextBox_result.Clear();
             button_redeem.Enabled = false;
 
             var checkedRButton = groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
             string input = checkedRButton.Tag.ToString();
-            if(checkBox_botname.Checked) { input += " " + comboBox_botname.Text; }
+            if (checkBox_botname.Checked) { input += " " + comboBox_botname.Text; }
             Regex steamkey_Regex = new Regex("([A-Z0-9]{5}-[A-Z0-9]{5}-[A-Z0-9]{5})");
             MatchCollection steamkey_Matches = steamkey_Regex.Matches(richTextBox_keys.Text);
             if (steamkey_Matches.Count > 0)
@@ -67,13 +68,13 @@ namespace ASFRedeemer
                 {
                     Client = new Client(
                         new NetTcpBinding
-                    //new BasicHttpBinding
-                    {
-                        // We use SecurityMode.None for Mono compatibility
-                        // Yes, also on Windows, for Mono<->Windows communication
-                        Security = { Mode = SecurityMode.None },
-                        //Security = { Mode = BasicHttpSecurityMode.None },
-                        SendTimeout = new TimeSpan(1, 0, 0)
+                        //new BasicHttpBinding
+                        {
+                            // We use SecurityMode.None for Mono compatibility
+                            // Yes, also on Windows, for Mono<->Windows communication
+                            Security = { Mode = SecurityMode.None },
+                            //Security = { Mode = BasicHttpSecurityMode.None },
+                            SendTimeout = new TimeSpan(1, 0, 0)
                         },
                         new EndpointAddress("net.tcp://" + WCFHost + ":" + WCFPort + "/ASF")
                     //new EndpointAddress("http://" + WCFHost + ":" + WCFPort + "/ASF")
@@ -90,6 +91,11 @@ namespace ASFRedeemer
             else { MessageBox.Show("No keys..."); }
 
             button_redeem.Enabled = true;
+        }
+
+        private async void button_redeem_Click(object sender, EventArgs e)
+        {
+            await Task.Run(new Action(ResponseRedeem));
         }
 
         private void richTextBox_keys_TextChanged(object sender, EventArgs e)
