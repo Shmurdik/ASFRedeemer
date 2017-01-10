@@ -28,18 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("", System.Windows.Forms.HorizontalAlignment.Center);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Total", System.Windows.Forms.HorizontalAlignment.Center);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Good Keys", System.Windows.Forms.HorizontalAlignment.Center);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Bad Keys", System.Windows.Forms.HorizontalAlignment.Center);
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Total",
             "0"}, -1);
             System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            "OnCooldown",
+            "0"}, -1, System.Drawing.Color.Brown, System.Drawing.Color.Empty, null);
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
             "OK",
             "0"}, -1, System.Drawing.Color.Green, System.Drawing.Color.Empty, null);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
             "AlreadyOwned",
             "0"}, -1, System.Drawing.Color.Blue, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
+            "BaseGameRequired",
+            "0"}, -1, System.Drawing.Color.Blue, System.Drawing.Color.Empty, null);
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
+            "RegionLocked",
+            "0"}, -1, System.Drawing.Color.Red, System.Drawing.Color.Empty, null);
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
             "DuplicatedKey",
+            "0"}, -1, System.Drawing.Color.Red, System.Drawing.Color.Empty, null);
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
+            "InvalidKey",
             "0"}, -1, System.Drawing.Color.Red, System.Drawing.Color.Empty, null);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -161,7 +175,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox_result.Location = new System.Drawing.Point(12, 257);
             this.richTextBox_result.Name = "richTextBox_result";
-            this.richTextBox_result.Size = new System.Drawing.Size(225, 157);
+            this.richTextBox_result.Size = new System.Drawing.Size(225, 256);
             this.richTextBox_result.TabIndex = 3;
             this.richTextBox_result.Text = "";
             // 
@@ -204,7 +218,9 @@
             this.textBox_search_in_result.Size = new System.Drawing.Size(159, 20);
             this.textBox_search_in_result.TabIndex = 10;
             this.textBox_search_in_result.Text = "Search...";
-            this.textBox_search_in_result.Visible = false;
+            this.textBox_search_in_result.Enter += new System.EventHandler(this.textBox_search_in_result_Enter);
+            this.textBox_search_in_result.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_search_in_result_KeyUp);
+            this.textBox_search_in_result.Leave += new System.EventHandler(this.textBox_search_in_result_Leave);
             // 
             // listView_result
             // 
@@ -217,28 +233,44 @@
             this.columnHeader2});
             this.listView_result.FullRowSelect = true;
             this.listView_result.GridLines = true;
-            listViewGroup1.Header = "";
+            listViewGroup1.Header = "Total";
             listViewGroup1.HeaderAlignment = System.Windows.Forms.HorizontalAlignment.Center;
-            listViewGroup1.Name = "listViewGroup1";
+            listViewGroup1.Name = "listViewGroup_total";
+            listViewGroup2.Header = "Good Keys";
+            listViewGroup2.HeaderAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            listViewGroup2.Name = "listViewGroup_good_keys";
+            listViewGroup3.Header = "Bad Keys";
+            listViewGroup3.HeaderAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            listViewGroup3.Name = "listViewGroup_bad_keys";
             this.listView_result.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1});
+            listViewGroup1,
+            listViewGroup2,
+            listViewGroup3});
             this.listView_result.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listView_result.HideSelection = false;
             listViewItem1.Group = listViewGroup1;
             listViewItem2.Group = listViewGroup1;
-            listViewItem2.StateImageIndex = 0;
-            listViewItem3.Group = listViewGroup1;
-            listViewItem4.Group = listViewGroup1;
+            listViewItem3.Group = listViewGroup2;
+            listViewItem3.StateImageIndex = 0;
+            listViewItem4.Group = listViewGroup2;
+            listViewItem5.Group = listViewGroup2;
+            listViewItem6.Group = listViewGroup2;
+            listViewItem7.Group = listViewGroup3;
+            listViewItem8.Group = listViewGroup3;
             this.listView_result.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2,
             listViewItem3,
-            listViewItem4});
+            listViewItem4,
+            listViewItem5,
+            listViewItem6,
+            listViewItem7,
+            listViewItem8});
             this.listView_result.Location = new System.Drawing.Point(243, 257);
             this.listView_result.MultiSelect = false;
             this.listView_result.Name = "listView_result";
             this.listView_result.Scrollable = false;
-            this.listView_result.Size = new System.Drawing.Size(141, 157);
+            this.listView_result.Size = new System.Drawing.Size(141, 256);
             this.listView_result.TabIndex = 13;
             this.listView_result.UseCompatibleStateImageBehavior = false;
             this.listView_result.View = System.Windows.Forms.View.Details;
@@ -257,7 +289,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(396, 426);
+            this.ClientSize = new System.Drawing.Size(396, 525);
             this.Controls.Add(this.listView_result);
             this.Controls.Add(this.textBox_search_in_result);
             this.Controls.Add(this.label_found_keys);

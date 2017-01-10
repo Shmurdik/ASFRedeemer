@@ -87,6 +87,10 @@ namespace ASFRedeemer
                 listView_result.FindItemWithText("OK").SubItems[1].Text = Regex.Matches(richTextBox_result.Text, "Status: OK").Count.ToString();
                 listView_result.FindItemWithText("AlreadyOwned").SubItems[1].Text = Regex.Matches(richTextBox_result.Text, "Status: AlreadyOwned").Count.ToString();
                 listView_result.FindItemWithText("DuplicatedKey").SubItems[1].Text = Regex.Matches(richTextBox_result.Text, "Status: DuplicatedKey").Count.ToString();
+                listView_result.FindItemWithText("RegionLocked").SubItems[1].Text = Regex.Matches(richTextBox_result.Text, "Status: RegionLocked").Count.ToString();
+                listView_result.FindItemWithText("InvalidKey").SubItems[1].Text = Regex.Matches(richTextBox_result.Text, "Status: InvalidKey").Count.ToString();
+                listView_result.FindItemWithText("BaseGameRequired").SubItems[1].Text = Regex.Matches(richTextBox_result.Text, "Status: BaseGameRequired").Count.ToString();
+                listView_result.FindItemWithText("OnCooldown").SubItems[1].Text = Regex.Matches(richTextBox_result.Text, "Status: OnCooldown").Count.ToString();
             }
             else { MessageBox.Show("No keys..."); }
 
@@ -127,6 +131,45 @@ namespace ASFRedeemer
             {
                 checkBox_botname.Enabled = false;
                 comboBox_botname.Enabled = false;
+            }
+        }
+
+        private void textBox_search_in_result_KeyUp(object sender, KeyEventArgs e)
+        {
+            richTextBox_result.SelectAll();
+            richTextBox_result.SelectionColor = richTextBox_result.ForeColor;
+            richTextBox_result.SelectionBackColor = richTextBox_result.BackColor;
+            int startIndex = richTextBox_result.Find(textBox_search_in_result.Text, 0, RichTextBoxFinds.None);
+            if (startIndex >= 0 && richTextBox_result.Text.IndexOf(textBox_search_in_result.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                richTextBox_result.Select(startIndex, textBox_search_in_result.Text.Length);
+
+                richTextBox_result.SelectionColor = Color.White;
+                richTextBox_result.SelectionBackColor = Color.Blue;
+
+                richTextBox_result.ScrollToCaret();
+                richTextBox_result.Refresh();
+                //richTextBox_result.Focus();
+            }
+        }
+
+        private void textBox_search_in_result_Enter(object sender, EventArgs e)
+        {
+            if (textBox_search_in_result.Text == "Search...")
+            {
+                textBox_search_in_result.Text = "";
+                textBox_search_in_result.ForeColor = SystemColors.WindowText;
+                textBox_search_in_result.Font = new Font(textBox_search_in_result.Font, FontStyle.Regular);
+            }
+        }
+
+        private void textBox_search_in_result_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBox_search_in_result.Text))
+            {
+                textBox_search_in_result.Text = "Search...";
+                textBox_search_in_result.ForeColor = Color.Gray;
+                textBox_search_in_result.Font = new Font(textBox_search_in_result.Font, FontStyle.Italic);
             }
         }
     }
