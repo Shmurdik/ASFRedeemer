@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Total", System.Windows.Forms.HorizontalAlignment.Center);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Main", System.Windows.Forms.HorizontalAlignment.Center);
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Good Keys", System.Windows.Forms.HorizontalAlignment.Center);
             System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Bad Keys", System.Windows.Forms.HorizontalAlignment.Center);
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
@@ -233,9 +233,9 @@
             this.columnHeader2});
             this.listView_result.FullRowSelect = true;
             this.listView_result.GridLines = true;
-            listViewGroup1.Header = "Total";
+            listViewGroup1.Header = "Main";
             listViewGroup1.HeaderAlignment = System.Windows.Forms.HorizontalAlignment.Center;
-            listViewGroup1.Name = "listViewGroup_total";
+            listViewGroup1.Name = "listViewGroup_main";
             listViewGroup2.Header = "Good Keys";
             listViewGroup2.HeaderAlignment = System.Windows.Forms.HorizontalAlignment.Center;
             listViewGroup2.Name = "listViewGroup_good_keys";

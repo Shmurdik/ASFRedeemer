@@ -49,6 +49,10 @@ namespace ASFRedeemer
         {
             richTextBox_result.Clear();
             button_redeem.Enabled = false;
+            foreach(ListViewItem item in listView_result.Items)
+            {
+                item.SubItems[1].Text = "0";
+            }
 
             var checkedRButton = groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
             string input = checkedRButton.Tag.ToString();
