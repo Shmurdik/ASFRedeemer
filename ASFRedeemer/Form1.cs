@@ -35,14 +35,47 @@ namespace ASFRedeemer
         private static readonly string ExecutableFile = Assembly.Location;
         private static readonly string ExecutableDirectory = Path.GetDirectoryName(ExecutableFile);
 
-        private Client Client;
+        private Client client;
 
-        private string WCFHost = "localhost";
+        private string WCFHost = "127.0.0.1";
         private string WCFPort = "1242";
 
         public Form1()
         {
             InitializeComponent();
+        }
+
+        internal string SendCommand(string input)
+        {
+            if (client == null)
+            {
+                client = new Client(
+                    new NetTcpBinding
+                    //new BasicHttpBinding
+                    {
+                        // We use SecurityMode.None for Mono compatibility
+                        // Yes, also on Windows, for Mono<->Windows communication
+                        Security = { Mode = SecurityMode.None },
+                        //Security = { Mode = BasicHttpSecurityMode.None },
+                        SendTimeout = new TimeSpan(1, 0, 0)
+                    },
+                    new EndpointAddress("net.tcp://" + WCFHost + ":" + WCFPort + "/ASF")
+                //new EndpointAddress("http://" + WCFHost + ":" + WCFPort + "/ASF")
+                );
+            }
+
+            string result = client.HandleCommand(input);
+
+            StopClient();
+
+            return result;
+        }
+
+        private void StopClient()
+        {
+            if (client == null) { return; }
+            if (client.State != CommunicationState.Closed) { client.Close(); }
+            client = null;
         }
 
         private void ResponseRedeem()
@@ -68,24 +101,7 @@ namespace ASFRedeemer
                 }
                 input += " " + string.Join(",", keys.ToArray());
 
-                if (Client == null)
-                {
-                    Client = new Client(
-                        new NetTcpBinding
-                        //new BasicHttpBinding
-                        {
-                            // We use SecurityMode.None for Mono compatibility
-                            // Yes, also on Windows, for Mono<->Windows communication
-                            Security = { Mode = SecurityMode.None },
-                            //Security = { Mode = BasicHttpSecurityMode.None },
-                            SendTimeout = new TimeSpan(1, 0, 0)
-                        },
-                        new EndpointAddress("net.tcp://" + WCFHost + ":" + WCFPort + "/ASF")
-                    //new EndpointAddress("http://" + WCFHost + ":" + WCFPort + "/ASF")
-                    );
-                }
-
-                richTextBox_result.Text = Client.HandleCommand(input);
+                richTextBox_result.Text = SendCommand(input).Trim();
 
                 listView_result.FindItemWithText("Total").SubItems[1].Text = Regex.Matches(richTextBox_result.Text, "Status: ").Count.ToString();
                 listView_result.FindItemWithText("OK").SubItems[1].Text = Regex.Matches(richTextBox_result.Text, "Status: OK").Count.ToString();
