@@ -111,6 +111,7 @@ namespace ASFRedeemer
                 listView_result.FindItemWithText("InvalidKey").SubItems[1].Text = Regex.Matches(richTextBox_result.Text, "Status: InvalidKey").Count.ToString();
                 listView_result.FindItemWithText("BaseGameRequired").SubItems[1].Text = Regex.Matches(richTextBox_result.Text, "Status: BaseGameRequired").Count.ToString();
                 listView_result.FindItemWithText("OnCooldown").SubItems[1].Text = Regex.Matches(richTextBox_result.Text, "Status: OnCooldown").Count.ToString();
+                listView_result.FindItemWithText("Timeout").SubItems[1].Text = Regex.Matches(richTextBox_result.Text, "Status: Timeout").Count.ToString();
             }
             else { MessageBox.Show("No keys..."); }
 

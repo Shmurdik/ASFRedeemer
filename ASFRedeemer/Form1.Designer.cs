@@ -32,27 +32,30 @@
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Good Keys", System.Windows.Forms.HorizontalAlignment.Center);
             System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Bad Keys", System.Windows.Forms.HorizontalAlignment.Center);
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Total",
+            "Total tries",
             "0"}, -1);
             System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "OnCooldown",
             "0"}, -1, System.Drawing.Color.Brown, System.Drawing.Color.Empty, null);
             System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            "Timeout",
+            "0"}, -1, System.Drawing.Color.Red, System.Drawing.Color.Empty, null);
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
             "OK",
             "0"}, -1, System.Drawing.Color.Green, System.Drawing.Color.Empty, null);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
             "AlreadyOwned",
             "0"}, -1, System.Drawing.Color.Blue, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
             "BaseGameRequired",
             "0"}, -1, System.Drawing.Color.Blue, System.Drawing.Color.Empty, null);
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
             "RegionLocked",
             "0"}, -1, System.Drawing.Color.Red, System.Drawing.Color.Empty, null);
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
             "DuplicatedKey",
             "0"}, -1, System.Drawing.Color.Red, System.Drawing.Color.Empty, null);
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
             "InvalidKey",
             "0"}, -1, System.Drawing.Color.Red, System.Drawing.Color.Empty, null);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
@@ -149,7 +152,7 @@
             this.button_redeem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_redeem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button_redeem.ForeColor = System.Drawing.Color.Blue;
-            this.button_redeem.Location = new System.Drawing.Point(243, 12);
+            this.button_redeem.Location = new System.Drawing.Point(336, 12);
             this.button_redeem.Name = "button_redeem";
             this.button_redeem.Size = new System.Drawing.Size(141, 82);
             this.button_redeem.TabIndex = 1;
@@ -163,7 +166,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox_keys.Location = new System.Drawing.Point(12, 129);
             this.richTextBox_keys.Name = "richTextBox_keys";
-            this.richTextBox_keys.Size = new System.Drawing.Size(225, 96);
+            this.richTextBox_keys.Size = new System.Drawing.Size(318, 96);
             this.richTextBox_keys.TabIndex = 2;
             this.richTextBox_keys.Text = "";
             this.richTextBox_keys.TextChanged += new System.EventHandler(this.richTextBox_keys_TextChanged);
@@ -175,7 +178,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox_result.Location = new System.Drawing.Point(12, 257);
             this.richTextBox_result.Name = "richTextBox_result";
-            this.richTextBox_result.Size = new System.Drawing.Size(225, 256);
+            this.richTextBox_result.Size = new System.Drawing.Size(318, 282);
             this.richTextBox_result.TabIndex = 3;
             this.richTextBox_result.Text = "";
             // 
@@ -202,7 +205,7 @@
             this.label_found_keys.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label_found_keys.AutoSize = true;
             this.label_found_keys.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_found_keys.Location = new System.Drawing.Point(243, 132);
+            this.label_found_keys.Location = new System.Drawing.Point(336, 132);
             this.label_found_keys.Name = "label_found_keys";
             this.label_found_keys.Size = new System.Drawing.Size(87, 13);
             this.label_found_keys.TabIndex = 8;
@@ -213,7 +216,7 @@
             this.textBox_search_in_result.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_search_in_result.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox_search_in_result.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBox_search_in_result.Location = new System.Drawing.Point(78, 231);
+            this.textBox_search_in_result.Location = new System.Drawing.Point(171, 231);
             this.textBox_search_in_result.Name = "textBox_search_in_result";
             this.textBox_search_in_result.Size = new System.Drawing.Size(159, 20);
             this.textBox_search_in_result.TabIndex = 10;
@@ -250,13 +253,14 @@
             this.listView_result.HideSelection = false;
             listViewItem1.Group = listViewGroup1;
             listViewItem2.Group = listViewGroup1;
-            listViewItem3.Group = listViewGroup2;
-            listViewItem3.StateImageIndex = 0;
+            listViewItem3.Group = listViewGroup1;
             listViewItem4.Group = listViewGroup2;
+            listViewItem4.StateImageIndex = 0;
             listViewItem5.Group = listViewGroup2;
             listViewItem6.Group = listViewGroup2;
-            listViewItem7.Group = listViewGroup3;
+            listViewItem7.Group = listViewGroup2;
             listViewItem8.Group = listViewGroup3;
+            listViewItem9.Group = listViewGroup3;
             this.listView_result.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2,
@@ -265,12 +269,13 @@
             listViewItem5,
             listViewItem6,
             listViewItem7,
-            listViewItem8});
-            this.listView_result.Location = new System.Drawing.Point(243, 257);
+            listViewItem8,
+            listViewItem9});
+            this.listView_result.Location = new System.Drawing.Point(336, 257);
             this.listView_result.MultiSelect = false;
             this.listView_result.Name = "listView_result";
             this.listView_result.Scrollable = false;
-            this.listView_result.Size = new System.Drawing.Size(141, 256);
+            this.listView_result.Size = new System.Drawing.Size(141, 282);
             this.listView_result.TabIndex = 13;
             this.listView_result.UseCompatibleStateImageBehavior = false;
             this.listView_result.View = System.Windows.Forms.View.Details;
@@ -289,7 +294,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(396, 525);
+            this.ClientSize = new System.Drawing.Size(489, 551);
             this.Controls.Add(this.listView_result);
             this.Controls.Add(this.textBox_search_in_result);
             this.Controls.Add(this.label_found_keys);
