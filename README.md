@@ -9,7 +9,7 @@
 [![Steam Donate](https://img.shields.io/badge/Steam-donate-lightgrey.svg)](https://steamcommunity.com/tradeoffer/new/?partner=79911927&token=29mtqolb)
 
 ***
-f
+
 This crumb helps to fast redeem a tons of keys.
 
 ### How to use
